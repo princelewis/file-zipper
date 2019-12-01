@@ -1,4 +1,4 @@
-## java-zip
+# java-zip
 Create a zip archive of files passed to the command line as arguments
 
 # A stream is an ordered sequence of data that...
@@ -32,6 +32,7 @@ Handling errors with autoclosable and closeable interfaces
 - FileWriter
 - FileInputStream
 - FileOutputStream
+
 Replace with:
 
 - BufferReader
