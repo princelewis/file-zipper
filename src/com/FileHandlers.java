@@ -29,7 +29,7 @@ public class FileHandlers {
     }
 
 
-    public static void copyZip (FileSystem createdZip , String filename) throws IOException {
+    public static void copyToZip (FileSystem createdZip , String filename) throws IOException {
         Path sourceFile = Paths.get(filename);
         Path destinationFile = createdZip.getPath('/' + filename);
         Files.copy(sourceFile, destinationFile, StandardCopyOption.REPLACE_EXISTING);
