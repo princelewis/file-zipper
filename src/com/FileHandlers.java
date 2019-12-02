@@ -3,9 +3,7 @@ package com;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.nio.file.FileSystem;
-import java.nio.file.FileSystems;
-import java.nio.file.Path;
+import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -28,5 +26,12 @@ public class FileHandlers {
         FileSystem createdZip = FileSystems.newFileSystem(zipURI, providerProps);
 
         return createdZip;
+    }
+
+
+    public static void copyZip (FileSystem createdZip , String filename) throws IOException {
+        Path sourceFile = Paths.get(filename);
+        Path destinationFile = createdZip.getPath('/' + filename);
+        Files.copy(sourceFile, destinationFile, StandardCopyOption.REPLACE_EXISTING);
     }
 }
