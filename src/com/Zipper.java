@@ -14,8 +14,11 @@ public class Zipper {
 
 
         String name = "data.zip";
+
+        //instantiate a file handler object fh
         FileHandlers fh = new FileHandlers();
 
+        //generate or convert the variable name which is in string data type to path type
         Path newPath = Paths.get(name);
 
         System.out.println("Enter the file names you want to zip. ");
@@ -24,12 +27,15 @@ public class Zipper {
 
         ArrayList<String> arrayOfFiles = new ArrayList<>();
         int exitCode = 1;
+
+        //while an exit code has not been entered. refer to line 26
         while(exitCode != 0){
             String filename = scanner.nextLine();
 
             if(filename.equals("0")){
                 exitCode = 0;
-            } else if (filename.matches("/([a-zA-Z]).([a-z])/")){
+
+            } else if (filename.matches("^\\w+\\.\\w+$")){
 
                 arrayOfFiles.add(filename);
             } else{
@@ -37,10 +43,11 @@ public class Zipper {
             }
         }
 
-
+        //check if any correct file name was entered
         if(arrayOfFiles.size() != 0){
 
             try(FileSystem fileSystem = fh.createZip(newPath)) {
+
                 for (String files : arrayOfFiles) {
                     FileHandlers.copyToZip(fileSystem, files);
                     System.out.println("added "+ files + " to the archive");
@@ -52,7 +59,7 @@ public class Zipper {
             }
 
         } else{
-            System.out.println("you need to enter a valid file");
+            System.out.println("you need to enter at least a valid file");
         }
 
     }
